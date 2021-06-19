@@ -1,0 +1,567 @@
+{
+	"info": {
+		"_postman_id": "fc053a48-6305-4bc7-a4dd-90b97a24a151",
+		"name": "Contact List",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Basic endpoint Testing",
+			"item": [
+				{
+					"name": "Get Contact List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " "
+						},
+						"url": {
+							"raw": "3.13.86.142:3000/contacts",
+							"host": [
+								"3",
+								"13",
+								"86",
+								"142"
+							],
+							"port": "3000",
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jasondata=pm.response.json();\r",
+									"pm.environment.set(\"contactId\", jasondata._id);\r",
+									"let value=pm.environment.get(\"contactId\");\r",
+									"console.log(value);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"firstName\": \"{{firstname}}\",\r\n        \"lastName\": \"{{lastname}}\",\r\n        \"email\": \"asmith@thinkingtester.com\",\r\n        \"location\": {\r\n            \"city\": \"Boston, Ma\",\r\n            \"country\": \"USA\"\r\n        },\r\n        \"employer\": {\r\n            \"jobTitle\": \"Software Tester\",\r\n            \"company\": \"Microsoft\"\r\n        }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.13.86.142:3000/contacts",
+							"host": [
+								"3",
+								"13",
+								"86",
+								"142"
+							],
+							"port": "3000",
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpDate Contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"firstName\": \"{{firstname}}\",\r\n        \"lastName\": \"{{lastname}}\",\r\n        \"email\": \"asmith@thinkingtester.com\",\r\n        \"location\": {\r\n            \"city\": \"London, Ma\",\r\n            \"country\": \"UK\"\r\n        },\r\n        \"employer\": {\r\n            \"jobTitle\": \"QA Tester\",\r\n            \"company\": \"Amazon\"\r\n        }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.13.86.142:3000/contacts/{{contactId}}",
+							"host": [
+								"3",
+								"13",
+								"86",
+								"142"
+							],
+							"port": "3000",
+							"path": [
+								"contacts",
+								"{{contactId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									" var jsonData = pm.response.json();\r",
+									"pm.test(\"Your test First  name\", function () {\r",
+									"pm.expect(jsonData.firstName).to.eql(environment.firstname);\r",
+									"});\r",
+									"pm.test(\"Your test Lastname\", function () {\r",
+									"pm.expect(jsonData.lastName).to.eql(\"Smith\");\r",
+									"});\r",
+									"pm.test(\"Your test Lastname\", function () {\r",
+									"pm.expect(jsonData.location.city).to.eql(\"Boston, MA\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"firstName\": \"{{firstname}}\",\r\n        \"lastName\": \"Jonny\",\r\n        \"email\": \"asmith@thinkingtester.com\",\r\n        \"location\": {\r\n            \"city\": \"Boston, Ma\",\r\n            \"country\": \"USA\"\r\n        },\r\n        \"employer\": {\r\n            \"jobTitle\": \"Software Tester\",\r\n            \"company\": \"Microsoft\"\r\n        }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.13.86.142:3000/contacts/6044d8cc170734047658f4f8",
+							"host": [
+								"3",
+								"13",
+								"86",
+								"142"
+							],
+							"port": "3000",
+							"path": [
+								"contacts",
+								"6044d8cc170734047658f4f8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Contact1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"firstName\": \"Amy\",\r\n        \"lastName\": \"Jonny\",\r\n        \"email\": \"asmith@thinkingtester.com\",\r\n        \"location\": {\r\n            \"city\": \"Boston, Ma\",\r\n            \"country\": \"USA\"\r\n        },\r\n        \"employer\": {\r\n            \"jobTitle\": \"Software Tester\",\r\n            \"company\": \"Microsoft\"\r\n        }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.13.86.142:3000/contacts/6044a6b4170734047658f4df",
+							"host": [
+								"3",
+								"13",
+								"86",
+								"142"
+							],
+							"port": "3000",
+							"path": [
+								"contacts",
+								"6044a6b4170734047658f4df"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Contact",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"firstName\": \"Amy\",\r\n        \"lastName\": \"Jonny\",\r\n        \"email\": \"asmith@thinkingtester.com\",\r\n        \"location\": {\r\n            \"city\": \"Boston, Ma\",\r\n            \"country\": \"USA\"\r\n        },\r\n        \"employer\": {\r\n            \"jobTitle\": \"Software Tester\",\r\n            \"company\": \"Microsoft\"\r\n        }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.13.86.142:3000/contacts/60cabe111707340476598c04",
+							"host": [
+								"3",
+								"13",
+								"86",
+								"142"
+							],
+							"port": "3000",
+							"path": [
+								"contacts",
+								"60cabe111707340476598c04"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "negative Testing",
+			"item": [
+				{
+					"name": "Get Contact1 not found",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"firstName\": \"Amy\",\r\n        \"lastName\": \"Jonny\",\r\n        \"email\": \"asmith@thinkingtester.com\",\r\n        \"location\": {\r\n            \"city\": \"Boston, Ma\",\r\n            \"country\": \"USA\"\r\n        },\r\n        \"employer\": {\r\n            \"jobTitle\": \"Software Tester\",\r\n            \"company\": \"Microsoft\"\r\n        }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.13.86.142:3000/contacts/6",
+							"host": [
+								"3",
+								"13",
+								"86",
+								"142"
+							],
+							"port": "3000",
+							"path": [
+								"contacts",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Contact Missing Firstname",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"firstName: First Name is required\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"firstName\": \"\",\r\n        \"lastName\": \"Jonny\",\r\n        \"email\": \"asmith@thinkingtester.com\",\r\n        \"location\": {\r\n            \"city\": \"Boston, Ma\",\r\n            \"country\": \"USA\"\r\n        },\r\n        \"employer\": {\r\n            \"jobTitle\": \"Software Tester\",\r\n            \"company\": \"Microsoft\"\r\n        }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.13.86.142:3000/contacts",
+							"host": [
+								"3",
+								"13",
+								"86",
+								"142"
+							],
+							"port": "3000",
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Contact Company Too Long",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"firstName\": \"Amyth\",\r\n        \"lastName\": \"Jonny\",\r\n        \"email\": \"asmith@thinkingtester.com\",\r\n        \"location\": {\r\n            \"city\": \"Boston, Ma\",\r\n            \"country\": \"USA\"\r\n        },\r\n        \"employer\": {\r\n            \"jobTitle\": \"Software Tester\",\r\n            \"company\": \"Microsoftasdfghjkliuytrwwerrrtrytr\"\r\n        }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.13.86.142:3000/contacts",
+							"host": [
+								"3",
+								"13",
+								"86",
+								"142"
+							],
+							"port": "3000",
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Contact Lastname Invalid",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"firstName\": \"Amyth\",\r\n        \"lastName\": \"Jonny;\",\r\n        \"email\": \"asmith@thinkingtester.com\",\r\n        \"location\": {\r\n            \"city\": \"Boston, Ma\",\r\n            \"country\": \"USA\"\r\n        },\r\n        \"employer\": {\r\n            \"jobTitle\": \"Software Tester\",\r\n            \"company\": \"Microsoft\"\r\n        }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.13.86.142:3000/contacts",
+							"host": [
+								"3",
+								"13",
+								"86",
+								"142"
+							],
+							"port": "3000",
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Contact with incorrect",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Checking email in response\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"email` with value \");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"firstName\": \"Amyth\",\r\n        \"lastName\": \"Jonny\",\r\n        \"email\": \"asmiththinkingtester.com\",\r\n        \"location\": {\r\n            \"city\": \"Boston, Ma\",\r\n            \"country\": \"USA\"\r\n        },\r\n        \"employer\": {\r\n            \"jobTitle\": \"Software Tester\",\r\n            \"company\": \"Microsoft\"\r\n        }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.13.86.142:3000/contacts",
+							"host": [
+								"3",
+								"13",
+								"86",
+								"142"
+							],
+							"port": "3000",
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Contact Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jasondata=pm.response.json();\r",
+									"pm.environment.set(\"contactId\", jasondata._id);\r",
+									"let value=pm.environment.get(\"contactId\");\r",
+									"console.log(value);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"firstName\": \"{{firstname}}\",\r\n        \"lastName\": \"{{lastname}}\",\r\n        \"email\": \"asmith@thinkingtester.com\",\r\n        \"location\": {\r\n            \"city\": \"Boston, Ma\",\r\n            \"country\": \"USA\"\r\n        },\r\n        \"employer\": {\r\n            \"jobTitle\": \"Software Tester\",\r\n            \"company\": \"Microsoft\"\r\n        }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.13.86.142:3000/contacts",
+							"host": [
+								"3",
+								"13",
+								"86",
+								"142"
+							],
+							"port": "3000",
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Contact MissingEmail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jasondata=pm.response.json();\r",
+									"pm.environment.set(\"contactId\", jasondata._id);\r",
+									"let value=pm.environment.get(\"contactId\");\r",
+									"console.log(value);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"firstName\": \"{{firstname}}\",\r\n        \"lastName\": \"{{lastname}}\",\r\n        \"email\": \"\",\r\n        \"location\": {\r\n            \"city\": \"Boston, Ma\",\r\n            \"country\": \"USA\"\r\n        },\r\n        \"employer\": {\r\n            \"jobTitle\": \"Software Tester\",\r\n            \"company\": \"Microsoft\"\r\n        }\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "3.13.86.142:3000/contacts",
+							"host": [
+								"3",
+								"13",
+								"86",
+								"142"
+							],
+							"port": "3000",
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Response time is less than 3000ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(3000);",
+					"});"
+				]
+			}
+		}
+	]
+}
